@@ -29,7 +29,7 @@ button{width:100%;padding:12px;background:linear-gradient(90deg,#00c853,#00e676)
 <label class="styleOption" style="--accent:#168bff;--swatch:linear-gradient(135deg,#00d9ff,#285cff)"><input type="radio" name="qrStyle" value="blue" checked><span class="swatch"></span><span><b>Ko‘k neon</b><br>Moviy-ko‘k</span></label>
 <label class="styleOption" style="--accent:#aaa;--swatch:linear-gradient(135deg,#eee,#555)"><input type="radio" name="qrStyle" value="silver"><span class="swatch"></span><span><b>Qora-kumush</b><br>Premium</span></label>
 <label class="styleOption" style="--accent:#ff3434;--swatch:linear-gradient(135deg,#ff7777,#b30000)"><input type="radio" name="qrStyle" value="red"><span class="swatch"></span><span><b>Qizil sport</b><br>Sport uslubi</span></label>
-[26.10.2026 14:34] 🇺🇿e1bek_1♠: <label class="styleOption" style="--accent:#222;--swatch:linear-gradient(135deg,#555,#111)"><input type="radio" name="qrStyle" value="classic"><span class="swatch"></span><span><b>Klassik</b><br>Oq-qora</span></label>
+<label class="styleOption" style="--accent:#222;--swatch:linear-gradient(135deg,#555,#111)"><input type="radio" name="qrStyle" value="classic"><span class="swatch"></span><span><b>Klassik</b><br>Oq-qora</span></label>
 </div>
 <button type="button" id="createBtn">QR yaratish</button><div id="qr"><canvas id="qrCanvas" width="320" height="320"></canvas></div>
 <div id="status" role="status"></div><button type="button" id="downloadBtn" class="download">QR yuklab olish</button>
@@ -88,7 +88,7 @@ async function createQR(){
      try { styledQR.append(wrap); setTimeout(()=>resolve(),900); }
      catch(e){reject(e);}
    });
-[26.10.2026 14:34] 🇺🇿e1bek_1♠: generatedQR=styledQR;
+ generatedQR=styledQR;
    wrap.style.setProperty('--accent',st.accent);wrap.style.display='block';dl.dataset.filename='carqr-'+st.file;dl.style.display='block';ready=true;
    status.textContent='QR-kod tayyor! Telefon bilan skanerlab tekshirib ko‘r.';
  }catch(e){console.error(e);status.textContent='Xato: '+e.message+' GitHub Pages orqali ochib qayta urinib ko‘r.'}

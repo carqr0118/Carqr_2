@@ -1,237 +1,103 @@
-<!DOCTYPE html>
-<html>
-
+[26.10.2026 14:34] 🇺🇿e1bek_1♠: <!DOCTYPE html>
+<html lang="uz">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CarQR</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
 <style>
-
-body{
-margin:0;
-font-family:'Poppins',sans-serif;
-background:url(bg.jpg);
-background-size:cover;
-background-position:center;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.logo{
-position:absolute;
-top:20px;
-left:20px;
-width:120px;
-}
-
-.card{
-background:rgba(0,0,0,0.75);
-backdrop-filter:blur(8px);
-padding:30px;
-border-radius:18px;
-width:320px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,0.6);
-border:1px solid rgba(0,200,255,0.3);
-color:white;
-}
-
-h2{
-margin-bottom:20px;
-letter-spacing:1px;
-}
-
-.box{
-background:rgba(255,255,255,0.05);
-border-left:4px solid #00c8ff;
-border-radius:10px;
-padding:10px;
-margin:10px 0;
-text-align:left;
-}
-
-.box span{
-font-size:13px;
-color:#9fdcff;
-}
-
-.box input{
-width:100%;
-padding:8px;
-border:none;
-outline:none;
-background:transparent;
-color:white;
-font-size:16px;
-}
-
-.error{
-color:red;
-font-size:12px;
-}
-
-button{
-width:100%;
-padding:12px;
-background:linear-gradient(90deg,#00c853,#00e676);
-color:white;
-border:none;
-border-radius:10px;
-cursor:pointer;
-font-weight:600;
-margin-top:10px;
-}
-
-canvas{
-margin-top:15px;
-display:none;
-background:white;
-padding:10px;
-border-radius:10px;
-}
-
-.download{
-display:none;
-margin-top:10px;
-}
-
-</style>
-
-</head>
-
-<body>
-
-<img src="logo.jpg" class="logo">
-
-<div class="card">
-
-<h2>CarQR yaratish</h2>
-
-<div class="box">
-<span>Ism Familya</span>
-<input id="name">
-<small id="nameError" class="error"></small>
+*{box-sizing:border-box}body{margin:0;font-family:'Poppins',sans-serif;background:url('bg.jpg') center/cover fixed;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:24px 12px;color:#fff}
+.logo{position:absolute;top:20px;left:20px;width:120px;max-width:25vw}
+.card{background:rgba(0,0,0,.8);backdrop-filter:blur(8px);padding:26px 22px;border-radius:18px;width:min(100%,390px);text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.6);border:1px solid rgba(0,200,255,.3)}
+h2{margin:0 0 20px;letter-spacing:1px}.box{background:rgba(255,255,255,.05);border-left:4px solid #00c8ff;border-radius:10px;padding:10px;margin:10px 0;text-align:left}
+.box span{display:block;font-size:13px;color:#9fdcff}.box input{width:100%;padding:8px 2px;border:0;outline:none;background:transparent;color:#fff;font-size:16px;font-family:inherit}.error{color:#ff7777;font-size:12px}
+button{width:100%;padding:12px;background:linear-gradient(90deg,#00c853,#00e676);color:#fff;border:0;border-radius:10px;cursor:pointer;font-weight:600;margin-top:10px;font-family:inherit;font-size:15px}button:disabled{opacity:.65;cursor:wait}
+.styleTitle{font-size:13px;color:#9fdcff;margin:16px 0 8px;text-align:left}.styleOptions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.styleOption{display:flex;align-items:center;gap:8px;padding:10px 8px;border:1px solid #555;border-radius:10px;background:rgba(255,255,255,.06);cursor:pointer;text-align:left;font-size:12px;min-width:0}
+.styleOption:has(input:checked){border-color:var(--accent);box-shadow:0 0 10px var(--accent);background:rgba(255,255,255,.1)}
+.styleOption input{accent-color:var(--accent);margin:0;flex-shrink:0}.swatch{width:20px;height:20px;border-radius:50%;background:var(--swatch);box-shadow:0 0 8px var(--accent);flex-shrink:0}
+#qr{display:none;margin:18px auto 0;padding:12px;background:#fff;border:2px solid var(--accent,#168bff);border-radius:14px;width:fit-content;max-width:100%;box-shadow:0 0 18px var(--accent,#168bff)}
+#qr canvas,#qr img{display:block;max-width:100%;height:auto}#status{font-size:12px;margin-top:10px;color:#a9eaff;overflow-wrap:anywhere}.download{display:none}
+</style></head><body>
+<img src="logo.jpg" class="logo" alt="CarQR logo">
+<div class="card"><h2>CarQR yaratish</h2>
+<div class="box"><span>Ism Familya</span><input id="name" autocomplete="name"><small id="nameError" class="error"></small></div>
+<div class="box"><span>Mashina nomi</span><input id="car"><small id="carError" class="error"></small></div>
+<div class="box"><span>Mashina raqami</span><input id="number"><small id="numberError" class="error"></small></div>
+<div class="box"><span>Telefon raqami</span><input id="phone" type="tel" autocomplete="tel"><small id="phoneError" class="error"></small></div>
+<div class="styleTitle">QR dizaynini tanla</div>
+<div class="styleOptions">
+<label class="styleOption" style="--accent:#168bff;--swatch:linear-gradient(135deg,#00d9ff,#285cff)"><input type="radio" name="qrStyle" value="blue" checked><span class="swatch"></span><span><b>Ko‘k neon</b><br>Moviy-ko‘k</span></label>
+<label class="styleOption" style="--accent:#aaa;--swatch:linear-gradient(135deg,#eee,#555)"><input type="radio" name="qrStyle" value="silver"><span class="swatch"></span><span><b>Qora-kumush</b><br>Premium</span></label>
+<label class="styleOption" style="--accent:#ff3434;--swatch:linear-gradient(135deg,#ff7777,#b30000)"><input type="radio" name="qrStyle" value="red"><span class="swatch"></span><span><b>Qizil sport</b><br>Sport uslubi</span></label>
+[26.10.2026 14:34] 🇺🇿e1bek_1♠: <label class="styleOption" style="--accent:#222;--swatch:linear-gradient(135deg,#555,#111)"><input type="radio" name="qrStyle" value="classic"><span class="swatch"></span><span><b>Klassik</b><br>Oq-qora</span></label>
 </div>
-
-<div class="box">
-<span>Mashina nomi</span>
-<input id="car">
-<small id="carError" class="error"></small>
+<button type="button" id="createBtn">QR yaratish</button><div id="qr"><canvas id="qrCanvas" width="320" height="320"></canvas></div>
+<div id="status" role="status"></div><button type="button" id="downloadBtn" class="download">QR yuklab olish</button>
 </div>
-
-<div class="box">
-<span>Mashina raqami</span>
-<input id="number">
-<small id="numberError" class="error"></small>
-</div>
-
-<div class="box">
-<span>Telefon raqami</span>
-<input id="phone">
-<small id="phoneError" class="error"></small>
-</div>
-
-<button onclick="createQR()">QR yaratish</button>
-
-<br>
-
-<canvas id="qr"></canvas>
-
-<br>
-
-<button class="download" onclick="downloadQR()">QR yuklab olish</button>
-
-</div>
-
 <script>
-
-function createQR(){
-
-let name=document.getElementById("name").value
-let car=document.getElementById("car").value
-let number=document.getElementById("number").value
-let phone=document.getElementById("phone").value
-
-document.getElementById("nameError").innerText=""
-document.getElementById("carError").innerText=""
-document.getElementById("numberError").innerText=""
-document.getElementById("phoneError").innerText=""
-
-let error=false
-
-if(name==""){
-document.getElementById("nameError").innerText="Maydon to'ldirilishi kerak"
-error=true
+const styles={
+ blue:{rgb:'0-105-255',accent:'#168bff',file:'ko-k-neon'},
+ silver:{rgb:'75-75-75',accent:'#999999',file:'qora-kumush'},
+ red:{rgb:'210-0-20',accent:'#ff3434',file:'qizil-sport'},
+ classic:{rgb:'20-20-20',accent:'#222222',file:'klassik'}
+};
+let ready=false,qrLibraryPromise=null,generatedQR=null;
+function loadQrLibrary(){
+ if(window.QRCodeStyling)return Promise.resolve();
+ if(qrLibraryPromise)return qrLibraryPromise;
+ qrLibraryPromise=new Promise((resolve,reject)=>{
+  const s=document.createElement('script');
+  s.src='https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js';
+  s.onload=()=>window.QRCodeStyling?resolve():reject(new Error('QR dizayn kutubxonasi yuklanmadi.'));
+  s.onerror=()=>reject(new Error('QR dizayn kutubxonasi yuklanmadi. Internetni tekshiring.'));
+  document.head.appendChild(s);
+ });
+ return qrLibraryPromise;
 }
-
-if(car==""){
-document.getElementById("carError").innerText="Maydon to'ldirilishi kerak"
-error=true
+function drawImage(img,x,y,w,h){document.getElementById('qrCanvas').getContext('2d').drawImage(img,x,y,w,h)}
+async function createQR(){
+ const ids=['name','car','number','phone'],v={};let bad=false;
+ ids.forEach(id=>{v[id]=document.getElementById(id).value.trim();document.getElementById(id+'Error').textContent='';if(!v[id]){document.getElementById(id+'Error').textContent="Maydon to'ldirilishi kerak";bad=true}});
+ const status=document.getElementById('status'),btn=document.getElementById('createBtn'),dl=document.getElementById('downloadBtn'),wrap=document.getElementById('qr'),canvas=document.getElementById('qrCanvas');
+ status.textContent='';if(bad)return;
+ const key=document.querySelector('input[name="qrStyle"]:checked').value,st=styles[key];
+ const link='https://carqr0118.github.io/Carqr_2/create.html?name='+encodeURIComponent(v.name)+'&car='+encodeURIComponent(v.car)+'&number='+encodeURIComponent(v.number)+'&phone='+encodeURIComponent(v.phone);
+ btn.disabled=true;btn.textContent='QR tayyorlanmoqda...';dl.style.display='none';wrap.style.display='none';ready=false;
+ try{
+   // QR image is generated by QRServer with high error correction; logo is overlaid on the real QR.
+   await loadQrLibrary();
+   const logoData='logo.jpg';
+   const qrStyles={
+     blue:{dots:{type:'dots',color:'#168bff'},corners:{type:'extra-rounded',color:'#168bff'},cornerDots:{type:'dot',color:'#00cfff'}},
+     silver:{dots:{type:'rounded',color:'#555b66'},corners:{type:'extra-rounded',color:'#333333'},cornerDots:{type:'dot',color:'#aaaaaa'}},
+     red:{dots:{type:'classy-rounded',color:'#d40000'},corners:{type:'extra-rounded',color:'#d40000'},cornerDots:{type:'dot',color:'#ff3434'}},
+     classic:{dots:{type:'square',color:'#111111'},corners:{type:'square',color:'#111111'},cornerDots:{type:'square',color:'#111111'}}
+   };
+   const design=qrStyles[key];
+   const styledQR=new QRCodeStyling({
+     width:280,height:280,type:'canvas',data:link,image:logoData,margin:8,
+     qrOptions:{errorCorrectionLevel:'H'},
+     imageOptions:{hideBackgroundDots:true,imageSize:0.22,margin:5,crossOrigin:'anonymous'},
+     dotsOptions:design.dots,
+     cornersSquareOptions:design.corners,
+     cornersDotOptions:design.cornerDots,
+     backgroundOptions:{color:'#ffffff'}
+   });
+   wrap.innerHTML='';
+   await new Promise((resolve,reject)=>{
+     try { styledQR.append(wrap); setTimeout(()=>resolve(),900); }
+     catch(e){reject(e);}
+   });
+[26.10.2026 14:34] 🇺🇿e1bek_1♠: generatedQR=styledQR;
+   wrap.style.setProperty('--accent',st.accent);wrap.style.display='block';dl.dataset.filename='carqr-'+st.file;dl.style.display='block';ready=true;
+   status.textContent='QR-kod tayyor! Telefon bilan skanerlab tekshirib ko‘r.';
+ }catch(e){console.error(e);status.textContent='Xato: '+e.message+' GitHub Pages orqali ochib qayta urinib ko‘r.'}
+ finally{btn.disabled=false;btn.textContent='QR yaratish'}
 }
-
-if(number==""){
-document.getElementById("numberError").innerText="Maydon to'ldirilishi kerak"
-error=true
-}
-
-if(phone==""){
-document.getElementById("phoneError").innerText="Maydon to'ldirilishi kerak"
-error=true
-}
-
-if(error){
-return
-}
-
-let link="https://carqr0118.github.io/Carqr_2/create.html?name="+encodeURIComponent(name)+
-"&car="+encodeURIComponent(car)+
-"&number="+encodeURIComponent(number)+
-"&phone="+encodeURIComponent(phone)
-
-let qr="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data="+encodeURIComponent(link)
-
-let canvas=document.getElementById("qr")
-let ctx=canvas.getContext("2d")
-
-let qrImage=new Image()
-qrImage.crossOrigin="anonymous"
-
-qrImage.onload=function(){
-
-canvas.width=250
-canvas.height=250
-
-ctx.drawImage(qrImage,0,0,250,250)
-
-}
-
-qrImage.src=qr
-
-canvas.style.display="block"
-document.querySelector(".download").style.display="inline-block"
-
-}
-
-function downloadQR(){
-
-let canvas=document.getElementById("qr")
-
-let link=document.createElement("a")
-link.download="carqr.png"
-link.href=canvas.toDataURL("image/png")
-link.click()
-
-}
-
-</script>
-
-</body>
-
-</html>
+document.getElementById('createBtn').addEventListener('click',createQR);
+document.getElementById('downloadBtn').addEventListener('click',()=>{
+ if(!ready){document.getElementById('status').textContent='Avval QR yaratish tugmasini bosing.';return}
+ if(generatedQR){generatedQR.download({name:document.getElementById('downloadBtn').dataset.filename||'carqr',extension:'png'});return}
+ const a=document.createElement('a');a.download='carqr.png';a.href=document.getElementById('qrCanvas').toDataURL('image/png');a.click()
+});
+</script></body></html>
